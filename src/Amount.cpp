@@ -27,6 +27,9 @@ double Amount::getValuePerMonth() const {
 }
 
 void Amount::setValuePerMonth(double val_) {
+    if (val_ < 0) {
+        val_ = -val_;
+    }
     valuePerMonth = val_;
     valuePerYear = val_ * 12.0;
 }
@@ -36,6 +39,9 @@ double Amount::getValuePerYear() const {
 }
 
 void Amount::setValuePerYear(double val_) {
+    if (val_ < 0) {
+        val_ = -val_;
+    }
     valuePerMonth = val_ / 12.0;
     valuePerYear = val_;
 }

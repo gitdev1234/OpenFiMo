@@ -24,10 +24,12 @@ INCLUDEPATH += test/
 SOURCES += \
     src/Amount.cpp \
     test/AmountTest.cpp \
-    main.cpp
+    main.cpp \
+    src/FinanceMonitor.cpp
 
 HEADERS += \
     include/catch.hpp \
     include/Types.h \
     include/Amount.h \
-    include/catch.hpp
+    include/catch.hpp \
+    include/FinanceMonitor.h

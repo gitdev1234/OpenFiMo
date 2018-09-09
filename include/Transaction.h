@@ -10,13 +10,27 @@
 #define Transaction_H
 
 #include "Types.h"
+#include "AmountOwner.h"
+#include "Amount.h"
 
 class Transaction {
     public:
         /* --- constructors / destructors --- */
         Transaction();
 
-    private:
+        AmountOwner getSender() const;
+        void setSender(const AmountOwner &value);
+
+        AmountOwner getReceiver() const;
+        void setReceiver(const AmountOwner &value);
+
+        Amount getAmount() const;
+        void setAmount(const Amount &value);
+
+private:
+        AmountOwner sender;
+        AmountOwner receiver;
+        Amount amount;
 
 
 

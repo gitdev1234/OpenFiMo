@@ -23,5 +23,7 @@ using namespace std;
 
 /* --- enumerations --- */
 enum AmountType {expense, income};
+enum AmountOwnerType {someoneGivingYouMoney,you,someoneReceivingYourMoney,youReceivingYourMoney};
+
 
 #endif // TYPES_H

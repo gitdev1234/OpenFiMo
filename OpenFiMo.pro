@@ -1,4 +1,5 @@
-QT -= gui
+QT += gui
+QT += widgets
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -25,11 +26,12 @@ SOURCES += \
     src/Amount.cpp \
     test/AmountTest.cpp \
     main.cpp \
-    src/FinanceMonitor.cpp
+    src/AmountOwner.cpp \
+    src/Transaction.cpp
 
 HEADERS += \
     include/catch.hpp \
     include/Types.h \
     include/Amount.h \
-    include/catch.hpp \
-    include/FinanceMonitor.h
+    include/AmountOwner.h \
+    include/Transaction.h

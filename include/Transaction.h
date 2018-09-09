@@ -18,6 +18,9 @@ class Transaction {
         /* --- constructors / destructors --- */
         Transaction();
 
+        string getName() const;
+        void setName(const string &value);
+
         AmountOwner getSender() const;
         void setSender(const AmountOwner &value);
 
@@ -27,10 +30,12 @@ class Transaction {
         Amount getAmount() const;
         void setAmount(const Amount &value);
 
+
 private:
+        string name;
         AmountOwner sender;
         AmountOwner receiver;
-        Amount amount;
+        double amountPerMonth;
 
 
 

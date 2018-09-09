@@ -10,19 +10,11 @@
 
 /* --- constructors / destructors --- */
 
-AmountOwner::AmountOwner() {
- 
+AmountOwner::AmountOwner(const string &name_, double initialBalance_) {
+    setName(name_);
+    setBalance(initialBalance_);
 }
 
-AmountOwnerType AmountOwner::getAmountOwnerType() const
-{
-    return amountOwnerType;
-}
-
-void AmountOwner::setAmountOwnerType(const AmountOwnerType &value)
-{
-    amountOwnerType = value;
-}
 
 double AmountOwner::getRunningTotalBalance() const
 {
@@ -32,6 +24,26 @@ double AmountOwner::getRunningTotalBalance() const
 void AmountOwner::setRunningTotalBalance(double value)
 {
     runningTotalBalance = value;
+}
+
+string AmountOwner::getName() const
+{
+    return name;
+}
+
+void AmountOwner::setName(const string &value)
+{
+    name = value;
+}
+
+double AmountOwner::getBalance() const
+{
+    return balance;
+}
+
+void AmountOwner::setBalance(double value)
+{
+    balance = value;
 }
 
 /* --- getters / setters --- */

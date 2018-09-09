@@ -14,17 +14,17 @@
 class AmountOwner {
     public:
         /* --- constructors / destructors --- */
-        AmountOwner();
+        AmountOwner(const string &name_ = "", double initialBalance_ = 0);
 
-        AmountOwnerType getAmountOwnerType() const;
-        void setAmountOwnerType(const AmountOwnerType &value);
+        string getName() const;
+        void setName(const string &value);
 
-        double getRunningTotalBalance() const;
-        void setRunningTotalBalance(double value);
+        double getBalance() const;
+        void setBalance(double value);
 
 private:
-        AmountOwnerType amountOwnerType;
-        double runningTotalBalance;
+        string name;
+        double balance;
 
 
 

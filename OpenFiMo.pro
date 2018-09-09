@@ -27,11 +27,13 @@ SOURCES += \
     test/AmountTest.cpp \
     main.cpp \
     src/AmountOwner.cpp \
-    src/Transaction.cpp
+    src/Transaction.cpp \
+    src/OpenFinanceMonitor.cpp
 
 HEADERS += \
     include/catch.hpp \
     include/Types.h \
     include/Amount.h \
     include/AmountOwner.h \
-    include/Transaction.h
+    include/Transaction.h \
+    include/OpenFinanceMonitor.h

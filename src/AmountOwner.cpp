@@ -15,17 +15,6 @@ AmountOwner::AmountOwner(const string &name_, double initialBalance_) {
     setBalance(initialBalance_);
 }
 
-
-double AmountOwner::getRunningTotalBalance() const
-{
-    return runningTotalBalance;
-}
-
-void AmountOwner::setRunningTotalBalance(double value)
-{
-    runningTotalBalance = value;
-}
-
 string AmountOwner::getName() const
 {
     return name;
@@ -44,6 +33,10 @@ double AmountOwner::getBalance() const
 void AmountOwner::setBalance(double value)
 {
     balance = value;
+}
+
+void AmountOwner::changeBalance(double delta_) {
+    balance += delta_;
 }
 
 /* --- getters / setters --- */

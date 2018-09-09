@@ -23,7 +23,6 @@ INCLUDEPATH += include/
 INCLUDEPATH += test/
 
 SOURCES += \
-    src/Amount.cpp \
     test/AmountTest.cpp \
     main.cpp \
     src/AmountOwner.cpp \
@@ -33,7 +32,6 @@ SOURCES += \
 HEADERS += \
     include/catch.hpp \
     include/Types.h \
-    include/Amount.h \
     include/AmountOwner.h \
     include/Transaction.h \
     include/OpenFinanceMonitor.h

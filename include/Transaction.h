@@ -11,12 +11,14 @@
 
 #include "Types.h"
 #include "AmountOwner.h"
-#include "Amount.h"
 
 class Transaction {
     public:
         /* --- constructors / destructors --- */
-        Transaction();
+        Transaction(TransactionType transactionType_, const string &name_, const AmountOwner &sender_, const AmountOwner &receiver_, double amountPerMonth_);
+
+        TransactionType getTransactionType() const;
+        void setTransactionType(const TransactionType &value);
 
         string getName() const;
         void setName(const string &value);
@@ -27,17 +29,15 @@ class Transaction {
         AmountOwner getReceiver() const;
         void setReceiver(const AmountOwner &value);
 
-        Amount getAmount() const;
-        void setAmount(const Amount &value);
-
+        double getAmountPerMonth() const;
+        void setAmountPerMonth(double value);
 
 private:
+        TransactionType transactionType;
         string name;
         AmountOwner sender;
         AmountOwner receiver;
         double amountPerMonth;
-
-
 
 };
 

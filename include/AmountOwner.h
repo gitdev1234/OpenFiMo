@@ -22,6 +22,8 @@ class AmountOwner {
         double getBalance() const;
         void setBalance(double value);
 
+        void changeBalance(double delta_);
+
 private:
         string name;
         double balance;

@@ -10,8 +10,32 @@
 
 /* --- constructors / destructors --- */
 
-Transaction::Transaction() {
- 
+Transaction::Transaction(TransactionType transactionType_, const string &name_, const AmountOwner &sender_, const AmountOwner &receiver_, double amountPerMonth_) {
+    setTransactionType(transactionType_);
+    setName(name_);
+    setSender(sender_);
+    setReceiver(receiver_);
+    setAmountPerMonth(amountPerMonth_);
+}
+
+TransactionType Transaction::getTransactionType() const
+{
+    return transactionType;
+}
+
+void Transaction::setTransactionType(const TransactionType &value)
+{
+    transactionType = value;
+}
+
+string Transaction::getName() const
+{
+    return name;
+}
+
+void Transaction::setName(const string &value)
+{
+    name = value;
 }
 
 AmountOwner Transaction::getSender() const
@@ -34,15 +58,16 @@ void Transaction::setReceiver(const AmountOwner &value)
     receiver = value;
 }
 
-Amount Transaction::getAmount() const
+double Transaction::getAmountPerMonth() const
 {
-    return amount;
+    return amountPerMonth;
 }
 
-void Transaction::setAmount(const Amount &value)
+void Transaction::setAmountPerMonth(double value)
 {
-    amount = value;
+    amountPerMonth = value;
 }
+
 
 /* --- getters / setters --- */
 

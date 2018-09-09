@@ -30,26 +30,47 @@ void OpenFinanceMonitor::addPiggyBank(const string &name_, double initialBalance
     addAmountOwner(AmountOwnerType::piggyBank,name_,initialBalance_);
 }
 
-
-
-vector<AmountOwner> OpenFinanceMonitor::getAmountOwners() const
-{
-    return amountOwners;
+void OpenFinanceMonitor::addIncomingTransaction(const string &name_, const AmountOwner &sender_  , double amountPerMonth_) {
+    addTransaction(TransactionType::incoming,name_,sender_,you,amountPerMonth_);
 }
 
-void OpenFinanceMonitor::setAmountOwners(const vector<AmountOwner> &value)
-{
-    amountOwners = value;
+void OpenFinanceMonitor::addOutgoingSavingsTransaction(const string &name_, const AmountOwner &receiver_, double amountPerMonth_) {
+    addTransaction(TransactionType::outgoingSavings,name_,you,receiver_,amountPerMonth_);
 }
 
-vector<Transaction> OpenFinanceMonitor::getTransactions() const
-{
-    return transactions;
+void OpenFinanceMonitor::addOutgoingExpenseTransaction(const string &name_, const AmountOwner &receiver_, double amountPerMonth_) {
+    addTransaction(TransactionType::outgoingExpense,name_,you,receiver_,amountPerMonth_);
 }
 
-void OpenFinanceMonitor::setTransactions(const vector<Transaction> &value)
-{
-    transactions = value;
+void OpenFinanceMonitor::calculateCurrentTransactions() {
+    for (int i=0 ; i < incomingTransactions.size(); i++) {
+        incomingTransactions[i].getSender().changeBalance(-incomingTransactions[i].getAmountPerMonth());
+        incomingTransactions[i].getReceiver().changeBalance(incomingTransactions[i].getAmountPerMonth());
+    }
+}
+
+vector<Transaction> OpenFinanceMonitor::getOutgoingExpenseTransactions() const {
+    return outgoingExpenseTransactions;
+}
+
+void OpenFinanceMonitor::setOutgoingExpenseTransactions(const vector<Transaction> &value) {
+    outgoingExpenseTransactions = value;
+}
+
+vector<Transaction> OpenFinanceMonitor::getOutgoingSavingsTransactions() const {
+    return outgoingSavingsTransactions;
+}
+
+vector<Transaction> OpenFinanceMonitor::getIncomingTransactions() const {
+    return incomingTransactions;
+}
+
+void OpenFinanceMonitor::setIncomingTransactions(const vector<Transaction> &value) {
+    incomingTransactions = value;
+}
+
+void OpenFinanceMonitor::setOutgoingSavingsTransactions(const vector<Transaction> &value) {
+    outgoingSavingsTransactions = value;
 }
 
 /* --- private functions --- */
@@ -71,6 +92,23 @@ void OpenFinanceMonitor::addAmountOwner(AmountOwnerType amountOwnerType_, const 
             break;
         default:
             break;
+    }
+}
+
+void OpenFinanceMonitor::addTransaction(TransactionType transactionType_, const string &name_, const AmountOwner &sender_, const AmountOwner &receiver_, double amountPerMonth_) {
+    Transaction temp(transactionType_,name_,sender_,receiver_,amountPerMonth_);
+    switch (transactionType_) {
+    case TransactionType::incoming:
+        incomingTransactions.push_back(temp);
+        break;
+    case TransactionType::outgoingExpense:
+        outgoingExpenseTransactions.push_back(temp);
+        break;
+    case TransactionType::outgoingSavings:
+        outgoingSavingsTransactions.push_back(temp);
+        break;
+    default:
+        break;
     }
 }
 

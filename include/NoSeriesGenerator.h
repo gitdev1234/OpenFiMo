@@ -30,7 +30,7 @@ class NoSeriesGenerator {
         NoSeriesGenerator            (const NoSeriesGenerator& NoSeriesGenerator_); // must be private to avoid creation of another NoSeriesGenerator-instance by copy-constructor
         NoSeriesGenerator& operator= (const NoSeriesGenerator& NoSeriesGenerator_); // must be private to avoid creating an new NoSeriesGenerator-instance by copying
 
-        unsigned int amountOwnerLastNo = 0;
+        unsigned int amountOwnerLastNo;
 
 
 };

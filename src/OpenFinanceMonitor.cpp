@@ -57,7 +57,9 @@ void OpenFinanceMonitor::calculateCurrentTransactions() {
     }
 }
 
-vector<Transaction> OpenFinanceMonitor::getOutgoingExpenseTransactions() const {
+
+/*
+vector<Transaction>& OpenFinanceMonitor::getOutgoingExpenseTransactions() const {
     return outgoingExpenseTransactions;
 }
 
@@ -69,11 +71,59 @@ vector<Transaction> OpenFinanceMonitor::getOutgoingSavingsTransactions() const {
     return outgoingSavingsTransactions;
 }
 
-vector<AmountOwner> OpenFinanceMonitor::getMoneyGivers() const
+vector<AmountOwner>& OpenFinanceMonitor::getMoneyGivers()
 {
     return moneyGivers;
 }
 
+*/
+AmountOwner &OpenFinanceMonitor::getAmoutOwnerByID(unsigned int id_)
+{
+    if (you.getId() == id_) {
+        return you;
+    }
+
+    for (unsigned int i=0; i<moneyGivers.size(); i++) {
+        if (moneyGivers[i].getId() == id_) {
+            return moneyGivers[i];
+        }
+    }
+    for (unsigned int i=0; i<moneyReceivers.size(); i++) {
+        if (moneyReceivers[i].getId() == id_) {
+            return moneyReceivers[i];
+        }
+    }
+    for (unsigned int i=0; i<piggyBanks.size(); i++) {
+        if (piggyBanks[i].getId() == id_) {
+            return piggyBanks[i];
+        }
+    }
+}
+
+AmountOwner &OpenFinanceMonitor::getAmoutOwnerByName(const string &name_)
+{
+    if (you.getName() == name_) {
+        return you;
+    }
+
+    for (unsigned int i=0; i<moneyGivers.size(); i++) {
+        if (moneyGivers[i].getName() == name_) {
+            return moneyGivers[i];
+        }
+    }
+    for (unsigned int i=0; i<moneyReceivers.size(); i++) {
+        if (moneyReceivers[i].getName() == name_) {
+            return moneyReceivers[i];
+        }
+    }
+    for (unsigned int i=0; i<piggyBanks.size(); i++) {
+        if (piggyBanks[i].getName() == name_) {
+            return piggyBanks[i];
+        }
+    }
+
+}
+/*
 void OpenFinanceMonitor::setMoneyGivers(const vector<AmountOwner> &value)
 {
     moneyGivers = value;
@@ -119,7 +169,7 @@ void OpenFinanceMonitor::setIncomingTransactions(vector<Transaction> &value) {
 
 void OpenFinanceMonitor::setOutgoingSavingsTransactions(vector<Transaction> &value) {
     outgoingSavingsTransactions = value;
-}
+}*/
 
 /* --- private functions --- */
 

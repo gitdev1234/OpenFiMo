@@ -33,13 +33,18 @@ class OpenFinanceMonitor {
 
         void calculateCurrentTransactions();
 
-        vector<AmountOwner> getMoneyGivers()    const;
-        AmountOwner         getYou()            const;
-        vector<AmountOwner> getMoneyReceivers() const;
-        vector<AmountOwner> getPiggyBanks()     const;
-        vector<Transaction> getIncomingTransactions() const;
-        vector<Transaction> getOutgoingExpenseTransactions() const;
-        vector<Transaction> getOutgoingSavingsTransactions() const;
+        AmountOwner& getAmoutOwnerByID(unsigned int id_);
+        AmountOwner& getAmoutOwnerByName(const string& name_);
+
+/*
+        vector<AmountOwner>& getMoneyGivers()    ;
+        AmountOwner&         getYou()            ;
+        vector<AmountOwner>& getMoneyReceivers()  ;
+        vector<AmountOwner>& getPiggyBanks()      ;
+        vector<Transaction>& getIncomingTransactions() ;
+        vector<Transaction>& getOutgoingExpenseTransactions() ;
+        vector<Transaction>& getOutgoingSavingsTransactions() ;
+*/
 
 private:
         vector<AmountOwner> moneyGivers;

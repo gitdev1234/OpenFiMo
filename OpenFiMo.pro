@@ -27,11 +27,13 @@ SOURCES += \
     src/AmountOwner.cpp \
     src/Transaction.cpp \
     src/OpenFinanceMonitor.cpp \
-    test/OpenFiMoTest.cpp
+    test/OpenFiMoTest.cpp \
+    src/NoSeriesGenerator.cpp
 
 HEADERS += \
     include/catch.hpp \
     include/Types.h \
     include/AmountOwner.h \
     include/Transaction.h \
-    include/OpenFinanceMonitor.h
+    include/OpenFinanceMonitor.h \
+    include/NoSeriesGenerator.h

@@ -11,6 +11,10 @@
 /* --- constructors / destructors --- */
 
 AmountOwner::AmountOwner(const string &name_, double initialBalance_) {
+    // create and init singleton-NoSeriesGenerator-object
+    NoSeriesGenerator& nsGen = NoSeriesGenerator::getInstance();
+    // set numeric identifier for AmountOwner
+    setId(nsGen.getNextAmountOwnerNo());
     setName(name_);
     setBalance(initialBalance_);
 }
@@ -42,6 +46,16 @@ void AmountOwner::setBalance(double value)
 
 void AmountOwner::changeBalance(double delta_) {
     balance += delta_;
+}
+
+unsigned int AmountOwner::getId() const
+{
+    return id;
+}
+
+void AmountOwner::setId(unsigned int value)
+{
+    id = value;
 }
 
 /* --- getters / setters --- */

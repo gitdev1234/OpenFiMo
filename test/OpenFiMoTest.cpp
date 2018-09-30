@@ -23,11 +23,11 @@ TEST_CASE("Test TODO") {
     ofm.addMoneyReceiver("rent apartment",0);
     ofm.addPiggyBank("Emergency Fund",0);
 
-    ofm.addIncomingTransaction("paycheck",ofm.getMoneyGivers()[0],1000);
-    ofm.addIncomingTransaction("monthly payment",ofm.getMoneyGivers()[1],200);
-    ofm.addOutgoingExpenseTransaction("insurance payment",ofm.getMoneyReceivers()[0],150);
-    ofm.addOutgoingExpenseTransaction("aparment rent",ofm.getMoneyReceivers()[1],300);
-    ofm.addOutgoingSavingsTransaction("emergency savings",ofm.getPiggyBanks()[0],15);
+    ofm.addIncomingTransaction("paycheck",ofm.getAmoutOwnerByName("ABC GmbH"),1000);
+    ofm.addIncomingTransaction("monthly payment",ofm.getAmoutOwnerByName("cdf AG"),200);
+    ofm.addOutgoingExpenseTransaction("insurance payment",ofm.getAmoutOwnerByName("insurance abc"),150);
+    ofm.addOutgoingExpenseTransaction("aparment rent",ofm.getAmoutOwnerByName("rent apartment"),300);
+    ofm.addOutgoingSavingsTransaction("emergency savings",ofm.getAmoutOwnerByName("Emergency Fund"),15);
 
     ofm.calculateCurrentTransactions();
 }

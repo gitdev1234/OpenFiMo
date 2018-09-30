@@ -15,6 +15,7 @@ class AmountOwner {
     public:
         /* --- constructors / destructors --- */
         AmountOwner(const string &name_ = "", double initialBalance_ = 0);
+        AmountOwner(const AmountOwner &other_);
 
         string getName() const;
         void setName(const string &value);

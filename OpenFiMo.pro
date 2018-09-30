@@ -23,11 +23,11 @@ INCLUDEPATH += include/
 INCLUDEPATH += test/
 
 SOURCES += \
-    test/AmountTest.cpp \
     main.cpp \
     src/AmountOwner.cpp \
     src/Transaction.cpp \
-    src/OpenFinanceMonitor.cpp
+    src/OpenFinanceMonitor.cpp \
+    test/OpenFiMoTest.cpp
 
 HEADERS += \
     include/catch.hpp \

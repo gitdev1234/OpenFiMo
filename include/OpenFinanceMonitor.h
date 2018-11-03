@@ -54,6 +54,9 @@ private:
         vector<Transaction> incomingTransactions;
         vector<Transaction> outgoingExpenseTransactions;
         vector<Transaction> outgoingSavingsTransactions;
+
+        // for outputting an error
+        AmountOwner emptyAmountOwner = AmountOwner("Error",0);
         
         void addAmountOwner(AmountOwnerType amountOwnerType_, const string &name_, double initialBalance_);
         void addTransaction(TransactionType transactionType_, const string &name_, AmountOwner *sender_, AmountOwner *receiver_, double amountPerMonth_);

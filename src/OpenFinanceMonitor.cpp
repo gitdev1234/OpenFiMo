@@ -106,21 +106,23 @@ AmountOwner &OpenFinanceMonitor::getAmoutOwnerByName(const string &name_)
         return you;
     }
 
-    for (unsigned int i=0; i<moneyGivers.size(); i++) {
+    for (unsigned int i=0; i < moneyGivers.size(); i++) {
         if (moneyGivers[i].getName() == name_) {
             return moneyGivers[i];
         }
     }
-    for (unsigned int i=0; i<moneyReceivers.size(); i++) {
+    for (unsigned int i=0; i < moneyReceivers.size(); i++) {
         if (moneyReceivers[i].getName() == name_) {
             return moneyReceivers[i];
         }
     }
-    for (unsigned int i=0; i<piggyBanks.size(); i++) {
+    for (unsigned int i=0; i < piggyBanks.size(); i++) {
         if (piggyBanks[i].getName() == name_) {
             return piggyBanks[i];
         }
     }
+
+    return emptyAmountOwner;
 
 }
 /*

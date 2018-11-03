@@ -62,3 +62,11 @@ TEST_CASE("Test adding amount owners, transactions and calculation of transactio
     REQUIRE(ofm.getAmoutOwnerByName("Apartment owner").getBalance() == +600);
     REQUIRE(ofm.getAmoutOwnerByName("Emergency Fund" ).getBalance() ==  +30);
 }
+
+
+TEST_CASE("Test getAmountOwnerByName with a non-existing name") {
+    OpenFinanceMonitor ofm;
+    ofm.addMoneyGiver("ABC GmbH",0);
+    REQUIRE_FALSE(ofm.getAmoutOwnerByName("CDF AG").getName() == "ABC GmbH");
+    REQUIRE(ofm.getAmoutOwnerByName("CDF AG").getName() == "Error");
+}

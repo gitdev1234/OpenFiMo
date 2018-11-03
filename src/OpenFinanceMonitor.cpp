@@ -98,6 +98,10 @@ AmountOwner &OpenFinanceMonitor::getAmoutOwnerByID(unsigned int id_)
             return piggyBanks[i];
         }
     }
+
+    // if there is no amount owner with the requested id
+    // return an empty amount owner with name "Error"
+    return emptyAmountOwner;
 }
 
 AmountOwner &OpenFinanceMonitor::getAmoutOwnerByName(const string &name_)
@@ -122,6 +126,8 @@ AmountOwner &OpenFinanceMonitor::getAmoutOwnerByName(const string &name_)
         }
     }
 
+    // if there is no amount owner with the requested name
+    // return an empty amount owner with name "Error"
     return emptyAmountOwner;
 
 }

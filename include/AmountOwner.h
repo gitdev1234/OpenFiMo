@@ -29,7 +29,7 @@ class AmountOwner {
 
         void changeBalance(double delta_);
 
-private:
+    private:
         unsigned int id;
         string name;
         double balance;

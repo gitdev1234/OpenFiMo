@@ -43,3 +43,10 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+DISTFILES += \
+    images/giver.png \
+    images/long-arrow-right.png \
+    images/money.png \
+    images/piggy.png \
+    images/receiver.png

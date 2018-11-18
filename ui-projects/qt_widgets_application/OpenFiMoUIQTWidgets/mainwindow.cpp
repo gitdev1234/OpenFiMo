@@ -6,6 +6,30 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QPixmap pixmap;
+    if (!pixmap.load( "/home/anon/Desktop/Archive/Archived/Hobbys & Projekte/IT/Programmieren/C++/OpenFiMo/OpenFiMo/ui-projects/qt_widgets_application/OpenFiMoUIQTWidgets/images/giver.png" )) {
+        qWarning("Failed to load images/target.png");
+    }
+    ui->label_8->setPixmap( pixmap );
+    if (!pixmap.load( "/home/anon/Desktop/Archive/Archived/Hobbys & Projekte/IT/Programmieren/C++/OpenFiMo/OpenFiMo/ui-projects/qt_widgets_application/OpenFiMoUIQTWidgets/images/money.png" )) {
+        qWarning("Failed to load images/target.png");
+    }
+    ui->label_9->setPixmap( pixmap );
+    if (!pixmap.load( "/home/anon/Desktop/Archive/Archived/Hobbys & Projekte/IT/Programmieren/C++/OpenFiMo/OpenFiMo/ui-projects/qt_widgets_application/OpenFiMoUIQTWidgets/images/receiver.png" )) {
+        qWarning("Failed to load images/target.png");
+    }
+    ui->label_10->setPixmap( pixmap );
+    if (!pixmap.load( "/home/anon/Desktop/Archive/Archived/Hobbys & Projekte/IT/Programmieren/C++/OpenFiMo/OpenFiMo/ui-projects/qt_widgets_application/OpenFiMoUIQTWidgets/images/piggy.png" )) {
+        qWarning("Failed to load images/target.png");
+    }
+    ui->label_13->setPixmap( pixmap );
+    if (!pixmap.load( "/home/anon/Desktop/Archive/Archived/Hobbys & Projekte/IT/Programmieren/C++/OpenFiMo/OpenFiMo/ui-projects/qt_widgets_application/OpenFiMoUIQTWidgets/images/long-arrow-right.png" )) {
+        qWarning("Failed to load images/target.png");
+    }
+    ui->label_11->setPixmap( pixmap );
+    ui->label_12->setPixmap( pixmap );
+    ui->label_14->setPixmap( pixmap );
 }
 
 MainWindow::~MainWindow()
@@ -173,4 +197,9 @@ void MainWindow::on_listWidget_2_itemClicked(QListWidgetItem *item)
 void MainWindow::on_pushButton_5_clicked()
 {
     openFiMo.calculateCurrentTransactions();
+    ui->doubleSpinBox_3->setValue(openFiMo.getBalanceByAmountOwnerType(AmountOwnerType::moneyGiver));
+    ui->doubleSpinBox_4->setValue(openFiMo.getBalanceByAmountOwnerType(AmountOwnerType::you));
+    ui->doubleSpinBox_5->setValue(openFiMo.getBalanceByAmountOwnerType(AmountOwnerType::moneyReceiver));
+    ui->doubleSpinBox_6->setValue(openFiMo.getBalanceByAmountOwnerType(AmountOwnerType::piggyBank));
+
 }

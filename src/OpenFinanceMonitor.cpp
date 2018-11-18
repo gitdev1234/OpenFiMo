@@ -154,6 +154,28 @@ Transaction &OpenFinanceMonitor::getTransactionByName(const string &name_) {
     return emptyTransaction;
 }
 
+double OpenFinanceMonitor::getBalanceByAmountOwnerType(AmountOwnerType amountOwnerType_) const
+{
+    double balance = 0;
+    if (amountOwnerType_ == AmountOwnerType::moneyGiver) {
+        for (unsigned int i = 0; i < moneyGivers.size(); i++) {
+            balance += moneyGivers[i].getBalance();
+        }
+    } else if (amountOwnerType_ == AmountOwnerType::you) {
+        balance = you.getBalance();
+    } else if (amountOwnerType_ == AmountOwnerType::moneyReceiver) {
+        for (unsigned int i = 0; i < moneyReceivers.size(); i++) {
+            balance += moneyReceivers[i].getBalance();
+        }
+    } else if (amountOwnerType_ == AmountOwnerType::piggyBank) {
+        for (unsigned int i = 0; i < piggyBanks.size(); i++) {
+            balance += piggyBanks[i].getBalance();
+        }
+    }
+
+    return balance;
+}
+
 /*
 void OpenFinanceMonitor::setMoneyGivers(const vector<AmountOwner> &value)
 {

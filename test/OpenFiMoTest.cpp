@@ -83,6 +83,10 @@ TEST_CASE("Test adding amount owners, transactions and calculation of transactio
     REQUIRE(ofm.getAmoutOwnerByName("Insurance 1"    ).getBalance() == +150);
     REQUIRE(ofm.getAmoutOwnerByName("Apartment owner").getBalance() == +300);
     REQUIRE(ofm.getAmoutOwnerByName("Emergency Fund" ).getBalance() ==  +15);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::moneyGiver   ) == -1200);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::you          ) == +735);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::moneyReceiver) == +450);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::piggyBank    ) == +15);
 
     ofm.calculateCurrentTransactions();
 
@@ -92,12 +96,23 @@ TEST_CASE("Test adding amount owners, transactions and calculation of transactio
     REQUIRE(ofm.getAmoutOwnerByName("Insurance 1"    ).getBalance() == +300);
     REQUIRE(ofm.getAmoutOwnerByName("Apartment owner").getBalance() == +600);
     REQUIRE(ofm.getAmoutOwnerByName("Emergency Fund" ).getBalance() ==  +30);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::moneyGiver   ) == -2400);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::you          ) == +1470);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::moneyReceiver) == +900);
+    REQUIRE(ofm.getBalanceByAmountOwnerType(AmountOwnerType::piggyBank    ) == +30);
+
 }
 
 
-TEST_CASE("Test getAmountOwnerByName with a non-existing name") {
+TEST_CASE("Test against bug getAmountOwnerByName with a non-existing name") {
     OpenFinanceMonitor ofm;
     ofm.addMoneyGiver("ABC GmbH",0);
     REQUIRE_FALSE(ofm.getAmoutOwnerByName("CDF AG").getName() == "ABC GmbH");
     REQUIRE(ofm.getAmoutOwnerByName("CDF AG").getName() == "Error");
+}
+
+TEST_CASE("Test against bug getTransactionByName with a non-existing name") {
+    OpenFinanceMonitor ofm;
+    REQUIRE_FALSE(ofm.getTransactionByName("Non-Existant Name Example").getName() == "ABC GmbH");
+    REQUIRE(ofm.getTransactionByName("Non-Existant Name Example").getName() == "Error");
 }

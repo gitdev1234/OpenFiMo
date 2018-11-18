@@ -37,6 +37,8 @@ class OpenFinanceMonitor {
         AmountOwner& getAmoutOwnerByName(const string& name_);
         Transaction& getTransactionByName(const string& name_);
 
+        double getBalanceByAmountOwnerType(AmountOwnerType amountOwnerType_) const ;
+
 /*
         vector<AmountOwner>& getMoneyGivers()    ;
         AmountOwner&         getYou()            ;

@@ -52,6 +52,29 @@ TEST_CASE("Test adding amount owners, transactions and calculation of transactio
     ofm.addOutgoingExpenseTransaction("Aparment rent",ofm.getAmoutOwnerByName("Apartment owner"),300);
     ofm.addOutgoingSavingsTransaction("Emergency savings",ofm.getAmoutOwnerByName("Emergency Fund"),15);
 
+    REQUIRE(ofm.getTransactionByName("Paycheck"         ).getName() == "Paycheck");
+    REQUIRE(ofm.getTransactionByName("Monthly payment"  ).getName() == "Monthly payment");
+    REQUIRE(ofm.getTransactionByName("Insurance payment").getName() == "Insurance payment");
+    REQUIRE(ofm.getTransactionByName("Aparment rent"    ).getName() == "Aparment rent");
+    REQUIRE(ofm.getTransactionByName("Emergency savings").getName() == "Emergency savings");
+
+    REQUIRE(ofm.getTransactionByName("Paycheck"         ).getTransactionType() == TransactionType::incoming);
+    REQUIRE(ofm.getTransactionByName("Monthly payment"  ).getTransactionType() == TransactionType::incoming);
+    REQUIRE(ofm.getTransactionByName("Insurance payment").getTransactionType() == TransactionType::outgoingExpense);
+    REQUIRE(ofm.getTransactionByName("Aparment rent"    ).getTransactionType() == TransactionType::outgoingExpense);
+    REQUIRE(ofm.getTransactionByName("Emergency savings").getTransactionType() == TransactionType::outgoingSavings);
+
+    REQUIRE(ofm.getTransactionByName("Paycheck"         ).getSender()   == &(ofm.getAmoutOwnerByName("ABC GmbH")));
+    REQUIRE(ofm.getTransactionByName("Paycheck"         ).getReceiver() == &(ofm.getAmoutOwnerByName("Me")));
+    REQUIRE(ofm.getTransactionByName("Monthly payment"  ).getSender()   == &(ofm.getAmoutOwnerByName("CDF AG")));
+    REQUIRE(ofm.getTransactionByName("Monthly payment"  ).getReceiver() == &(ofm.getAmoutOwnerByName("Me")));
+    REQUIRE(ofm.getTransactionByName("Insurance payment").getSender()   == &(ofm.getAmoutOwnerByName("Me")));
+    REQUIRE(ofm.getTransactionByName("Insurance payment").getReceiver() == &(ofm.getAmoutOwnerByName("Insurance 1")));
+    REQUIRE(ofm.getTransactionByName("Aparment rent"    ).getSender()   == &(ofm.getAmoutOwnerByName("Me")));
+    REQUIRE(ofm.getTransactionByName("Aparment rent"    ).getReceiver() == &(ofm.getAmoutOwnerByName("Apartment owner")));
+    REQUIRE(ofm.getTransactionByName("Emergency savings").getSender()   == &(ofm.getAmoutOwnerByName("Me")));
+    REQUIRE(ofm.getTransactionByName("Emergency savings").getReceiver() == &(ofm.getAmoutOwnerByName("Emergency Fund")));
+
     ofm.calculateCurrentTransactions();
 
     REQUIRE(ofm.getAmoutOwnerByName("ABC GmbH"       ).getBalance() == -1000);

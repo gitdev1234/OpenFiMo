@@ -35,6 +35,7 @@ class OpenFinanceMonitor {
 
         AmountOwner& getAmoutOwnerByID(unsigned int id_);
         AmountOwner& getAmoutOwnerByName(const string& name_);
+        Transaction& getTransactionByName(const string& name_);
 
 /*
         vector<AmountOwner>& getMoneyGivers()    ;
@@ -57,6 +58,7 @@ private:
 
         // for outputting an error
         AmountOwner emptyAmountOwner = AmountOwner("Error",AmountOwnerType::moneyGiver,0);
+        Transaction emptyTransaction = Transaction(TransactionType::incoming,"Error",&emptyAmountOwner,&emptyAmountOwner,0);
         
         void addAmountOwner(AmountOwnerType amountOwnerType_, const string &name_, double initialBalance_);
         void addTransaction(TransactionType transactionType_, const string &name_, AmountOwner *sender_, AmountOwner *receiver_, double amountPerMonth_);

@@ -21,8 +21,10 @@ AmountOwner::AmountOwner(const string &name_, const AmountOwnerType &amountOwner
 }
 
 AmountOwner::AmountOwner(const AmountOwner &other_) {
+    setId(other_.getId());
     setName(other_.getName());
     setBalance(other_.getBalance());
+    setAmountOwnerType(other_.getAmountOwnerType());
 }
 
 string AmountOwner::getName() const

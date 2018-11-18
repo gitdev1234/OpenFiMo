@@ -131,6 +131,29 @@ AmountOwner &OpenFinanceMonitor::getAmoutOwnerByName(const string &name_)
     return emptyAmountOwner;
 
 }
+
+Transaction &OpenFinanceMonitor::getTransactionByName(const string &name_) {
+    for (unsigned int i=0; i < incomingTransactions.size(); i++) {
+        if (incomingTransactions[i].getName() == name_) {
+            return incomingTransactions[i];
+        }
+    }
+    for (unsigned int i=0; i < outgoingExpenseTransactions.size(); i++) {
+        if (outgoingExpenseTransactions[i].getName() == name_) {
+            return outgoingExpenseTransactions[i];
+        }
+    }
+    for (unsigned int i=0; i < outgoingSavingsTransactions.size(); i++) {
+        if (outgoingSavingsTransactions[i].getName() == name_) {
+            return outgoingSavingsTransactions[i];
+        }
+    }
+
+    // if there is no transaction with the requested name
+    // return an empty transaction with name "Error"
+    return emptyTransaction;
+}
+
 /*
 void OpenFinanceMonitor::setMoneyGivers(const vector<AmountOwner> &value)
 {

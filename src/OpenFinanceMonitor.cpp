@@ -182,7 +182,7 @@ void OpenFinanceMonitor::setOutgoingSavingsTransactions(vector<Transaction> &val
 /* --- private functions --- */
 
 void OpenFinanceMonitor::addAmountOwner(AmountOwnerType amountOwnerType_, const string &name_, double initialBalance_) {
-    AmountOwner temp(name_,initialBalance_);
+    AmountOwner temp(name_,amountOwnerType_,initialBalance_);
     switch (amountOwnerType_) {
         case AmountOwnerType::moneyGiver:
             moneyGivers.push_back(temp);

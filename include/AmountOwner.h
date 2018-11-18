@@ -15,7 +15,7 @@
 class AmountOwner {
     public:
         /* --- constructors / destructors --- */
-        AmountOwner(const string &name_ = "", double initialBalance_ = 0);
+        AmountOwner(const string &name_ = "", const AmountOwnerType &amountOwnerType_ = AmountOwnerType::moneyGiver, double initialBalance_ = 0);
         AmountOwner(const AmountOwner &other_);
 
         unsigned int getId() const;
@@ -27,12 +27,16 @@ class AmountOwner {
         double getBalance() const;
         void setBalance(double value);
 
+        AmountOwnerType getAmountOwnerType() const;
+        void setAmountOwnerType(const AmountOwnerType &value);
+
         void changeBalance(double delta_);
 
-    private:
+private:
         unsigned int id;
         string name;
         double balance;
+        AmountOwnerType amountOwnerType;
 
 
 

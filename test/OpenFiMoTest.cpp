@@ -11,6 +11,7 @@
 
 #include "catch.hpp"
 #include "OpenFinanceMonitor.h"
+#include "Types.h"
 
 using namespace  std;
 
@@ -37,6 +38,13 @@ TEST_CASE("Test adding amount owners, transactions and calculation of transactio
     REQUIRE(ofm.getAmoutOwnerByName("Insurance 1"    ).getBalance() == 0);
     REQUIRE(ofm.getAmoutOwnerByName("Apartment owner").getBalance() == 0);
     REQUIRE(ofm.getAmoutOwnerByName("Emergency Fund" ).getBalance() == 0);
+
+    REQUIRE(ofm.getAmoutOwnerByName("ABC GmbH"       ).getAmountOwnerType() == AmountOwnerType::moneyGiver);
+    REQUIRE(ofm.getAmoutOwnerByName("CDF AG"         ).getAmountOwnerType() == AmountOwnerType::moneyGiver);
+    REQUIRE(ofm.getAmoutOwnerByName("Me"             ).getAmountOwnerType() == AmountOwnerType::you);
+    REQUIRE(ofm.getAmoutOwnerByName("Insurance 1"    ).getAmountOwnerType() == AmountOwnerType::moneyReceiver);
+    REQUIRE(ofm.getAmoutOwnerByName("Apartment owner").getAmountOwnerType() == AmountOwnerType::moneyReceiver);
+    REQUIRE(ofm.getAmoutOwnerByName("Emergency Fund" ).getAmountOwnerType() == AmountOwnerType::piggyBank);
 
     ofm.addIncomingTransaction("Paycheck",ofm.getAmoutOwnerByName("ABC GmbH"),1000);
     ofm.addIncomingTransaction("Monthly payment",ofm.getAmoutOwnerByName("CDF AG"),200);

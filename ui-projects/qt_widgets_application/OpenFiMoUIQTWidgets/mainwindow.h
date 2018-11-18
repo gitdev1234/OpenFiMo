@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QListWidgetItem>
+#include <QMessageBox>
 #include "OpenFinanceMonitor.h"
 #include "Types.h"
 
@@ -32,6 +33,12 @@ private slots:
     void on_comboBox_4_currentTextChanged(const QString &arg1);
 
     void on_listWidget_2_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void on_listWidget_2_currentTextChanged(const QString &currentText);
+
+    void on_listWidget_2_itemClicked(QListWidgetItem *item);
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -16,6 +16,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QString tempQString(ui->lineEdit->text());
+
+    for (int i=0; i < ui->listWidget->count(); i++) {
+        if (ui->listWidget->item(i)->text() == tempQString) {
+            QMessageBox msgBox;
+            msgBox.setText("Error, it's not possible to use the same name twice!");
+            msgBox.exec();
+            return;
+        }
+    }
+
     if (ui->comboBox->currentText() == "Money Giver") {
         openFiMo.addMoneyGiver(tempQString.toStdString(),ui->doubleSpinBox->value());
     } else if (ui->comboBox->currentText() == "Me") {
@@ -36,6 +46,18 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
     tempQString.fromStdString(ao.getName());
     ui->lineEdit->setText(tempQString);
     ui->doubleSpinBox->setValue(ao.getBalance());
+    AmountOwnerType aot = ao.getAmountOwnerType();
+    if (aot == AmountOwnerType::moneyGiver) {
+        ui->comboBox->setCurrentIndex(0);
+    } else if (aot == AmountOwnerType::you) {
+        ui->comboBox->setCurrentIndex(1);
+    } else if (aot == AmountOwnerType::moneyReceiver) {
+        ui->comboBox->setCurrentIndex(2);
+    } else if (aot == AmountOwnerType::piggyBank) {
+        ui->comboBox->setCurrentIndex(3);
+    }
+
+
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -68,11 +90,19 @@ void MainWindow::updateTransactionComboBoxes()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-
-    QString tempString = ui->comboBox_4->itemData(ui->comboBox_4->currentIndex()).toString();
-    QString tempString2 = ui->comboBox_2->itemData(ui->comboBox_2->currentIndex()).toString();
-    QString tempString3 = ui->comboBox_3->itemData(ui->comboBox_3->currentIndex()).toString();
+    QString tempString = ui->comboBox_4->itemText(ui->comboBox_4->currentIndex());
+    QString tempString2 = ui->comboBox_2->itemText(ui->comboBox_2->currentIndex());
+    QString tempString3 = ui->comboBox_3->itemText(ui->comboBox_3->currentIndex());
     QString tempString4 = ui->lineEdit_2->text();
+
+    for (int i=0; i < ui->listWidget_2->count(); i++) {
+        if (ui->listWidget_2->item(i)->text() == tempString4) {
+            QMessageBox msgBox;
+            msgBox.setText("Error, it's not possible to use the same name twice!");
+            msgBox.exec();
+            return;
+        }
+    }
 
     if (tempString == "incoming") {    
         openFiMo.addIncomingTransaction(tempString4.toStdString(),openFiMo.getAmoutOwnerByName(tempString2.toStdString()),ui->doubleSpinBox_2->value());
@@ -112,4 +142,35 @@ void MainWindow::on_listWidget_2_currentItemChanged(QListWidgetItem *current, QL
 {
 
 
+}
+
+void MainWindow::on_listWidget_2_currentTextChanged(const QString &currentText)
+{
+
+}
+
+void MainWindow::on_listWidget_2_itemClicked(QListWidgetItem *item)
+{
+    QString temp = item->text();
+    Transaction t = openFiMo.getTransactionByName(temp.toStdString());
+    temp.fromStdString(t.getName());
+    ui->lineEdit_2->setText(temp);
+    if (t.getTransactionType() == TransactionType::incoming) {
+        ui->comboBox_4->setCurrentIndex(0);
+    } else if (t.getTransactionType() == TransactionType::outgoingExpense) {
+        ui->comboBox_4->setCurrentIndex(1);
+    } else if (t.getTransactionType() == TransactionType::outgoingSavings) {
+        ui->comboBox_4->setCurrentIndex(2);
+    }
+    temp.fromStdString(t.getSender()->getName());
+    ui->comboBox_2->setCurrentText(temp);
+    temp.fromStdString(t.getReceiver()->getName());
+    ui->comboBox_3->setCurrentText(temp);
+    ui->doubleSpinBox_2->setValue(t.getAmountPerMonth());
+
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    openFiMo.calculateCurrentTransactions();
 }
